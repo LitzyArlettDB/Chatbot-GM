@@ -1,0 +1,163 @@
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .show-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 13px;
+        }
+        
+        .forgot-password {
+            display: block;
+            text-align: right;
+            margin-top: 5px;
+            color: var(--gray);
+            font-size: 13px;
+            text-decoration: none;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .login-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        .divider {
+            margin: 25px 0;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+            margin: 0 10px;
+        }
+        
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            background-color: white;
+            color: var(--dark);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .google-btn:hover {
+            background-color: #f8f9fa;
+            border-color: #ccc;
+        }
+        
+        .google-icon {
+            width: 18px;
+            margin-right: 10px;
+        }
+        
+        .signup-link {
+            margin-top: 25px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .signup-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Ruta  logo local -->
+        <img src="Chatbot-GM-main\static\images\GMlogo.png"GMTechBot Logo" class="logo">
+        <h1>GMTechBot</h1>
+        
+        <form action="/login" method="POST">
+            
+            <div class="input-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" placeholder="john.doe@gm.com" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="**********" required>
+                    <button type="button" class="show-password">Show</button>
+                </div>
+                <a href="/forgot-password" class="forgot-password">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="login-btn">Log in</button>
+        </form>
+        
+        <div class="divider">or</div>
+        
+        <a href="/accounts/google/login" class="google-btn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo" class="google-icon">
+            Sign in with Google
+        </a>
+        
+        <div class="signup-link">
+            Don't have an account? <a href="/register">Sign up</a>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        document.querySelector('.show-password').addEventListener('click', function(e) {
+            e.preventDefault();
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.textContent = 'Hide';
+            } else {
+                passwordInput.type = 'password';
+                this.textContent = 'Show';
+            }
+        });
+        
+        // Validación básica del formulario
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                e.preventDefault();
+                alert('Por favor complete todos los campos');
+            }
+        });
+    </script>
+</body>
+</html>
